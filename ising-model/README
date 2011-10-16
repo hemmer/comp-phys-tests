@@ -1,0 +1,18 @@
+IsingModel is a simple project to teach me the basics of both git and C++. It's a loose port from some existing Java code that I had written a while back. 
+
+To run, first compile using:
+
+$ make
+
+then run the resulting executable:
+
+$ ./IsingMain
+
+You can choose which quantities to output by setting the dataDisplayed variable to one of: 
+ENERGY, MAGNETISATION, C_V, CHI, ALL
+
+
+TODO:
+
+* Calculate Binder coefficient
+* GUI

@@ -1,0 +1,11 @@
+# compiled source #
+###################
+
+*.o
+*.so
+
+# ctags file
+tags
+
+# main executable
+IsingMain
