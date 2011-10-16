@@ -7,7 +7,7 @@ program_OBJS := $(program_C_OBJS) $(program_CXX_OBJS)
 program_INCLUDE_DIRS := 
 program_LIBRARY_DIRS :=
 program_LIBRARIES :=
-program_FLAGS := -Wall -Wextra -O3 
+program_FLAGS := -Wall -Wextra -O3 -BOOST_UBLAS_NDEBUG
 
 CPPFLAGS += $(foreach includedir,$(program_INCLUDE_DIRS),-I$(includedir))
 CPPFLAGS += $(program_FLAGS)

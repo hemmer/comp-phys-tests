@@ -1,12 +1,9 @@
-
-#define _DEBUG
-
-#include "helpers/matrix.h"
+#include <boost/numeric/ublas/matrix.hpp>
+using boost::numeric::ublas::matrix;
 #include <iostream>
 #include <fstream>
 
 using namespace std;
-using gds::matrix;
 
 int main (int, char **)
 {

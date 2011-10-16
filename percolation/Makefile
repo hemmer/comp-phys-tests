@@ -1,4 +1,4 @@
-program_NAME := Percolation
+program_NAME := percolation
 program_C_SRCS := $(wildcard *.c) $(wildcard */*.c)
 program_CXX_SRCS := $(wildcard *.cpp) $(wildcard */*.cpp)
 program_C_OBJS := ${program_C_SRCS:.c=.o}
