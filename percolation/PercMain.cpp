@@ -37,7 +37,7 @@ int main () {
 
     // p - probability of site occupation
     // explore for multiple values of p
-    for (double p = 0.0; p <= 1.0; p += 0.05) {
+    for (double p = 0.0; p <= 1.0; p += 0.02) {
 
         lattice.setProb(p);
         totalSuccesses = 0;
@@ -46,11 +46,10 @@ int main () {
         // take averages
         for (int test = 0; test < numTests; ++test) {
 
+            lattice.initialise();           // generate a new configuration
+            result = lattice.findPath();    // find a path (returns true if path available)
 
-            lattice.initialise();   // generate a new configuration
-            result = lattice.findPath();    // find a path
-            totalSuccesses += result;       // and sum for taking averages
-
+            totalSuccesses += result;       // and sum sucessful results for averaging
         }
 
         // find average and print

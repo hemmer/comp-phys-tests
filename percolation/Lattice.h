@@ -1,5 +1,5 @@
-/*
- * =====================================================================================
+/* =====================================================================================
+ *
  *
  *       Filename:  Lattice.h
  *
@@ -15,10 +15,10 @@
 #include <boost/random/mersenne_twister.hpp>
 #include <boost/random/uniform_real.hpp>
 #include <boost/random/variate_generator.hpp>
-#include <ctime>    // for seeding RNG
+#include <boost/numeric/ublas/matrix.hpp>
+using boost::numeric::ublas::matrix;
 
-#include "helpers/matrix.h"
-using namespace gds;
+#include <ctime>    // for seeding RNG
 
 #include <iostream> // for output/debug
 using std::cout;
@@ -81,7 +81,6 @@ class Lattice {
         void printDeque(deque<coord> &d);
 
 
-
         // boost RNG stuff
         boost::mt19937 gen;
         boost::uniform_real<> dist;
@@ -101,8 +100,7 @@ Lattice::Lattice(int rows_, int cols_) : rows(rows_), cols(cols_),
     dist(0.0, 1.0), randSite(gen, dist) {
 
     // seed with system clock
-    //gen.seed( static_cast<unsigned int>(std::time(0)) );
-    gen.seed(5); 
+    gen.seed( static_cast<unsigned int>(std::time(0)) );
 }
 
 
@@ -121,7 +119,6 @@ bool Lattice::findPath() {
             // then we can stop looking
             if(searchTree(i, 0)) return true;
 
-            //if(result) printDeque(completePath);
         }
     }
 
@@ -137,7 +134,6 @@ bool Lattice::findPath() {
             // then we can stop looking
             if(searchTree(0, j)) return true;
 
-            //if(result) printDeque(completePath);
         }
     }
 
@@ -152,15 +148,14 @@ bool Lattice::findPath() {
 // across the lattice
 bool Lattice::searchTree(int currentX, int currentY) {
 
-    //cout << "TOP (" << currentX << ", " << currentY << ") " << endl;
-
     // store the current position as a coord
     coord currentPos(currentX, currentY);
 
-    // STEP 1.
-    // check if we have sucessfully traversed
-    // the lattice, NOTE: this depends on which
-    // direction we are testing
+    /* STEP 1.
+       Check if we have sucessfully traversed the lattice. This depends
+       on which direction we are testing.
+       NOTE: this is the terminating statement for the recursion
+    */
     if (direction == HORIZONTAL) {
         if(currentX == (cols - 1)) {
             tree.push_back(currentPos);     // remember to add the final step
@@ -179,22 +174,18 @@ bool Lattice::searchTree(int currentX, int currentY) {
 
 
 
-    // STEP 2.
-    // Check if the current position
-    // being explored has already been
-    // visited in this branch of the tree.
-    // This avoids infinite loops.
+    /* STEP 2.
+       Check if the current position being explored has already been
+       visited in this branch of the tree. This avoids infinite loops.
+    */
 
-    // start (reverse) iterator at end as most
-    // likely to hit recent nodes
+    // start (reverse) iterator at end as most likely to hit most recent nodes
     tree_iter t = tree.rbegin();
 
     while ( t < tree.rend()) {
-        //cout << "## TreeWhile " << t->first << ", " << t->second << ", size = " << tree.size() << endl;
 
-        // if we hit any part of the previous
-        // steps of the path, then ignore this
-        // branch (by exiting)
+        // if we hit any part of the previous steps of the path, then ignore
+        // this branch (by exiting)
         if (currentPos == *t) {
             tree.pop_back();
             return false;
@@ -203,9 +194,11 @@ bool Lattice::searchTree(int currentX, int currentY) {
         ++t;     // otherwise keep checking rest of the tree
     }
 
-    // STEP 3.
-    // test each of the nearest neighbour
-    // sites for a legitimate next move
+
+    /* STEP 3.
+       Test each of the nearest neighbour sites for a legitimate next move.
+    */
+
     for (int move = 0; move < NUM_DIRECTIONS; ++move) {
         testX = currentX;
         testY = currentY;
@@ -221,7 +214,6 @@ bool Lattice::searchTree(int currentX, int currentY) {
             // new position so we add this to tree
             // to continue tracking the path
             tree.push_back(currentPos);
-            //cout << "exploring: " << testX << ", " << testY << endl;
 
             // recurse deeper - if we reach
             // other side, backtrack through
