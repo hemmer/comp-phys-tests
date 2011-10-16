@@ -1,0 +1,27 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.6	//
+N	/net/hemingway/code/comp-phys-tests/rk4/gravity/rk4test.cpp	/^    const int N = 2;$/;"	l
+f	/net/hemingway/code/comp-phys-tests/rk4/gravity/rk4test.cpp	/^double f(double t, vector<double> y, int i);$/;"	p	file:	signature:(double t, vector<double> y, int i)
+h	/net/hemingway/code/comp-phys-tests/rk4/gravity/rk4test.cpp	/^    double h = 0.01;     \/\/ stepsize$/;"	l
+main	/net/hemingway/code/comp-phys-tests/rk4/gravity/rk4test.cpp	/^int main (int, char **) {$/;"	f	signature:(int, char **)
+outputFile	/net/hemingway/code/comp-phys-tests/rk4/gravity/rk4test.cpp	/^    std::ofstream outputFile;$/;"	l
+program_CXX_OBJS	/net/hemingway/code/comp-phys-tests/rk4/gravity/Makefile	/^program_CXX_OBJS := ${program_CXX_SRCS:.cpp=.o}$/;"	m
+program_CXX_SRCS	/net/hemingway/code/comp-phys-tests/rk4/gravity/Makefile	/^program_CXX_SRCS := $(wildcard *.cpp) $(wildcard *\/*.cpp)$/;"	m
+program_C_OBJS	/net/hemingway/code/comp-phys-tests/rk4/gravity/Makefile	/^program_C_OBJS := ${program_C_SRCS:.c=.o}$/;"	m
+program_C_SRCS	/net/hemingway/code/comp-phys-tests/rk4/gravity/Makefile	/^program_C_SRCS := $(wildcard *.c) $(wildcard *\/*.c)$/;"	m
+program_FLAGS	/net/hemingway/code/comp-phys-tests/rk4/gravity/Makefile	/^program_FLAGS := -Wall -Wextra -O3$/;"	m
+program_INCLUDE_DIRS	/net/hemingway/code/comp-phys-tests/rk4/gravity/Makefile	/^program_INCLUDE_DIRS :=$/;"	m
+program_LIBRARIES	/net/hemingway/code/comp-phys-tests/rk4/gravity/Makefile	/^program_LIBRARIES :=$/;"	m
+program_LIBRARY_DIRS	/net/hemingway/code/comp-phys-tests/rk4/gravity/Makefile	/^program_LIBRARY_DIRS :=$/;"	m
+program_NAME	/net/hemingway/code/comp-phys-tests/rk4/gravity/Makefile	/^program_NAME := rk4-test $/;"	m
+program_OBJS	/net/hemingway/code/comp-phys-tests/rk4/gravity/Makefile	/^program_OBJS := $(program_C_OBJS) $(program_CXX_OBJS)$/;"	m
+rk4	/net/hemingway/code/comp-phys-tests/rk4/gravity/rk4test.cpp	/^void rk4(vector<double> &y, const double &t, const double &h);$/;"	p	file:	signature:(vector<double> &y, const double &t, const double &h)
+t	/net/hemingway/code/comp-phys-tests/rk4/gravity/rk4test.cpp	/^    double t_0 = 0.0, t_max = 10.0, t = t_0;$/;"	l
+t_0	/net/hemingway/code/comp-phys-tests/rk4/gravity/rk4test.cpp	/^    double t_0 = 0.0, t_max = 10.0, t = t_0;$/;"	l
+t_max	/net/hemingway/code/comp-phys-tests/rk4/gravity/rk4test.cpp	/^    double t_0 = 0.0, t_max = 10.0, t = t_0;$/;"	l
+y	/net/hemingway/code/comp-phys-tests/rk4/gravity/rk4test.cpp	/^    vector<double> y(y_0);$/;"	p	file:	signature:(y_0)
+y_0	/net/hemingway/code/comp-phys-tests/rk4/gravity/rk4test.cpp	/^    vector<double> y_0(N);$/;"	p	file:	signature:(N)
