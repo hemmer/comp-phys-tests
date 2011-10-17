@@ -3,7 +3,7 @@
 import numpy as np
 from pylab import *
 import matplotlib.pyplot as plt
-
+import sys
 
 class VicsekModel(object):
 
@@ -40,38 +40,47 @@ class VicsekModel(object):
         self.velocities[:, 1] = np.cos(self.angles) * self.v
 
     # this is where the main experiment is carried out
-    def main(self, show_animation):
+    def main(self, visual_mode):
 
 
         # set up plotting stuff
-        if show_animation:
+        if visual_mode:
+
             plt.ion()
             fig = plt.figure()
             ax = fig.add_subplot(111)
             wframe = None
 
-        # print header
-        print "eta\tv_a"
-
-        for self.eta in arange(0.0, 4.0, 0.2):
-
             # reset positions
             self.initialise_experiment()
 
             for step in xrange(self.num_steps):
-                #print "step", step
 
-                # plotting stuff
-                if show_animation:
-                    oldcol = wframe
-                    wframe = self.plot_grid(ax)
-                    if oldcol:
-                        ax.collections.remove(oldcol)
-                    plt.draw()
+                oldcol = wframe
+                wframe = self.plot_grid(ax)
+                if oldcol:
+                    ax.collections.remove(oldcol)
+                plt.draw()
 
                 self.perform_step()
 
-            print self.eta, "\t", self.find_avg_norm_vel()
+            print "for eta =", self.eta, " v_a =", self.find_avg_norm_vel()
+
+        # otherwise we are in data intensive mode
+        else:
+
+            # print header
+            print "eta\tv_a"
+
+            for self.eta in arange(0.0, 4.0, 0.2):
+
+                # reset positions
+                self.initialise_experiment()
+
+                for step in xrange(self.num_steps):
+                    self.perform_step()
+
+                print self.eta, "\t", self.find_avg_norm_vel()
 
         print "experiment finished"
 
@@ -158,10 +167,10 @@ class VicsekModel(object):
         return ax.quiver(plotx, ploty, plotu, plotv)
 
 # this is the main experiment
-N, L = 40, 3.16
+N, L = 150, 18
 
-rho = N / (L * L)
-eta = 1.8
+rho = N / float(L * L)
+eta = 0.1
 num_steps = 100
 print "num particles:", N
 print "system size:", L
@@ -169,4 +178,12 @@ print "density:", rho
 print "num steps:", num_steps
 
 sim = VicsekModel(L, eta, N, num_steps)
-sim.main(False)
+
+
+if len(sys.argv) > 1:
+    print "using visual mode"
+    sim.main(True)
+else:
+    print "using data intensive mode"
+    sim.main(False)
+
