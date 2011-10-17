@@ -28,4 +28,4 @@ clean:
 distclean: clean
 
 exec:
-		./$(program_NAME) && cd data && gnuplot -p plot.gp && cd .. 
+		./$(program_NAME) && cd data && gnuplot -persist plot.gp && cd .. 

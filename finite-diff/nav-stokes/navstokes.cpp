@@ -33,26 +33,32 @@ int main (int /*argc*/, char ** /*argv*/)
  
     while (t < t_max)
     {
+        /* Some comments on the index notation, particularly due to the
+           shifted grid. The pressure grid index notation just maps 
+           straight onto the array notation:
+           
+           p(i, j) -> p(i, j)
+           
+           Velocity components u and v are shifted by 1/2 in one dimension
+           only (i and j dimensions respectively). Clearly this notation
+           can't directly map to an array notation, so instead we use:
 
-        for (int i = 0; i < n_x; ++i)
+           u(i+1/2, j) -> u(i, j)     ex.  u(1/2, 0) -> u(0, 0) etc
+           v(i, j+1/2) -> v(i, j)     ex.  v(1, 1/2) -> v(1, 0) etc
+
+        */
+
+        // Apply boundary conditions
+        // In reality this is v(i, 1/2) = 0 
+        for (int i = 1; i < (n_x - 1); ++i) v(i, 0) = 0;
+        // In reality this is u(1/2, j) = 0 
+        for (int j = 1; j < (n_y - 1); ++j) u(i, 0) = 0;
+        
+
+        for (int i = 1; i < (n_x - 1); ++i)
         {
-            for (int j = 0; j < n_y; ++j)
+            for (int j = 1; j < (n_y - 1); ++j)
             {
-                /* Some comments on the index notation, particularly due to the
-                   shifted grid. The pressure grid index notation just maps 
-                   straight onto the array notation:
-                   
-                   p(i, j) -> p(i, j)
-                   
-                   Velocity components u and v are shifted by 1/2 in one dimension
-                   only (i and j dimensions respectively). Clearly this notation
-                   can't directly map to an array notation, so instead we use:
-
-                   u(i+1/2, j) -> u(i, j)     ex.  u(1/2, 0) -> u(0, 0) etc
-                   v(i, j+1/2) -> v(i, j)     ex.  v(1, 1/2) -> v(1, 0) etc
-
-                */
-
                 double viscous_term_u = (u(i-1, j) + u(i+1, j) - 2 * u(i, j)) / dx2
                                       + (u(i, j-1) + u(i, j+1) - 2 * u(i, j)) / dy2
                 double viscous_term_v = (v(i-1, j) + v(i+1, j) - 2 * v(i, j)) / dx2

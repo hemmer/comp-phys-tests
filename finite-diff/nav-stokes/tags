@@ -1,0 +1,26 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.6	//
+N	/net/hemingway/code/comp-phys-tests/nav-stokes/navstokes.cpp	/^    int N = 5;$/;"	l
+dt	/net/hemingway/code/comp-phys-tests/nav-stokes/navstokes.cpp	/^    double dt = 0.1, dx = 0.1, dy = 0.1;$/;"	l
+dx	/net/hemingway/code/comp-phys-tests/nav-stokes/navstokes.cpp	/^    double dt = 0.1, dx = 0.1, dy = 0.1;$/;"	l
+dy	/net/hemingway/code/comp-phys-tests/nav-stokes/navstokes.cpp	/^    double dt = 0.1, dx = 0.1, dy = 0.1;$/;"	l
+main	/net/hemingway/code/comp-phys-tests/nav-stokes/navstokes.cpp	/^int main (int \/*argc*\/, char ** \/*argv*\/) $/;"	f	signature:(int , char ** )
+n_x	/net/hemingway/code/comp-phys-tests/nav-stokes/navstokes.cpp	/^    int n_x, n_y;$/;"	l
+n_y	/net/hemingway/code/comp-phys-tests/nav-stokes/navstokes.cpp	/^    int n_x, n_y;$/;"	l
+p	/net/hemingway/code/comp-phys-tests/nav-stokes/navstokes.cpp	/^    matrix<double> p(n_x, n_y);$/;"	p	file:	signature:(n_x, n_y)
+program_CXX_OBJS	/net/hemingway/code/comp-phys-tests/nav-stokes/Makefile	/^program_CXX_OBJS := ${program_CXX_SRCS:.cpp=.o}$/;"	m
+program_CXX_SRCS	/net/hemingway/code/comp-phys-tests/nav-stokes/Makefile	/^program_CXX_SRCS := $(wildcard *.cpp) $(wildcard *\/*.cpp)$/;"	m
+program_C_OBJS	/net/hemingway/code/comp-phys-tests/nav-stokes/Makefile	/^program_C_OBJS := ${program_C_SRCS:.c=.o}$/;"	m
+program_C_SRCS	/net/hemingway/code/comp-phys-tests/nav-stokes/Makefile	/^program_C_SRCS := $(wildcard *.c) $(wildcard *\/*.c)$/;"	m
+program_FLAGS	/net/hemingway/code/comp-phys-tests/nav-stokes/Makefile	/^program_FLAGS := -Wall -Wextra -O3$/;"	m
+program_INCLUDE_DIRS	/net/hemingway/code/comp-phys-tests/nav-stokes/Makefile	/^program_INCLUDE_DIRS :=$/;"	m
+program_LIBRARIES	/net/hemingway/code/comp-phys-tests/nav-stokes/Makefile	/^program_LIBRARIES :=$/;"	m
+program_LIBRARY_DIRS	/net/hemingway/code/comp-phys-tests/nav-stokes/Makefile	/^program_LIBRARY_DIRS :=$/;"	m
+program_NAME	/net/hemingway/code/comp-phys-tests/nav-stokes/Makefile	/^program_NAME := nav-stokes$/;"	m
+program_OBJS	/net/hemingway/code/comp-phys-tests/nav-stokes/Makefile	/^program_OBJS := $(program_C_OBJS) $(program_CXX_OBJS)$/;"	m
+t	/net/hemingway/code/comp-phys-tests/nav-stokes/navstokes.cpp	/^    double t = 0.0, t_max = 10.0;$/;"	l
+t_max	/net/hemingway/code/comp-phys-tests/nav-stokes/navstokes.cpp	/^    double t = 0.0, t_max = 10.0;$/;"	l

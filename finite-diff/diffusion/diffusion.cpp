@@ -21,8 +21,8 @@ int main (int, char **)
 
 
     // initialise system with an initial drop of material in the middle
-    grid(0.4 * N_x, 0) = 100;
-    grid(0.6 * N_x, 0) = 100;
+    grid(int(0.4 * N_x), 0) = 100;
+    grid(int(0.6 * N_x), 0) = 100;
 
     // main experiment
     for (int t = 0; t < N_t - 1; ++t)
