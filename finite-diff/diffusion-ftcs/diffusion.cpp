@@ -16,7 +16,7 @@ int main (int, char **)
     // save calculating this at every step
     double factor = D * dt / (dx * dx);
 
-    // track for all times (only 2 needed in reality)
+    // track for all times (only 2 rows needed in reality)
     matrix<double> grid(N_x, N_t);
 
 
@@ -37,9 +37,7 @@ int main (int, char **)
 
         // check conservation of mass
         double mass = 0.0;
-
         for (int i = 0; i < N_x; ++i) mass += grid(i, t);
-
         cout << "mass at step " << t << " is: " << mass << endl;
     }
 
