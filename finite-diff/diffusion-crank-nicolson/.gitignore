@@ -1,0 +1,14 @@
+# compiled source #
+###################
+
+*.o
+*.so
+
+# ctags file
+tags
+
+# actual program output
+data/*.dat
+
+# main executable
+diffusion
