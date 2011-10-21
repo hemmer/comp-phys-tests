@@ -8,8 +8,8 @@ using namespace std;
 int main (int, char **)
 {
 
-    int N_t = 1000;                    // number of timesteps
-    int N_x = 50;                   // number of spacial points
+    int Nt = 1000;                    // number of timesteps
+    int Nx = 50;                   // number of spacial points
     double dt = 0.01, dx = 0.01;     // timestep / spacial resolution
     double D = 0.0001;             // diffusion const
 
@@ -17,27 +17,34 @@ int main (int, char **)
     double factor = D * dt / (dx * dx);
 
     // track for all times (only 2 rows needed in reality)
-    matrix<double> grid(N_x, N_t);
+    matrix<double> grid(Nx, Nt);
 
 
     // initialise system with an initial drop of material in the middle
-    grid(int(0.4 * N_x), 0) = 100;
-    grid(int(0.6 * N_x), 0) = 100;
+    grid(int(0.4 * Nx), 0) = 100;
+    grid(int(0.6 * Nx), 0) = 100;
+    grid(int(0.1 * Nx), 0) = 100;
 
     // main experiment
-    for (int t = 0; t < N_t - 1; ++t)
+    for (int t = 0; t < Nt - 1; ++t)
     {
-        // NOTE: here we are using Dirichlet BCs, i.e:
-        // grid(0, t) = grid(N_x - 1, t) = 0 for all t
-        for (int i = 1; i < N_x - 1; ++i)
+
+        // NOTE: here we are using Neumann BCs, i.e:
+        // du(0, t)/dx = du(Nx - 1, t)/dx = 0 for all t
+        grid(0, t) = grid(1, t);
+        grid(Nx - 1, t) = grid(Nx - 2, t);
+
+        for (int i = 1; i < Nx - 1; ++i)
         {
             grid(i, t + 1) = grid(i, t) + factor *
                              (grid(i + 1, t) + grid(i - 1, t) - 2 * grid(i, t));
         }
 
-        // check conservation of mass
+        
+        // check conservation of mass, remembering to ignore the 
+        // boundary points!
         double mass = 0.0;
-        for (int i = 0; i < N_x; ++i) mass += grid(i, t);
+        for (int i = 1; i < Nx - 1; ++i) mass += grid(i, t);
         cout << "mass at step " << t << " is: " << mass << endl;
     }
 
@@ -46,15 +53,15 @@ int main (int, char **)
     // write results to file, starting with a header for GNUPLOT
     ofstream dataFile;
     dataFile.open("data/output.dat", ios::trunc);
-    dataFile << "# D: " << D << ", N_x: " << N_x << ", N_t: " << N_t << endl;
+    dataFile << "# D: " << D << ", Nx: " << Nx << ", Nt: " << Nt << endl;
     dataFile << "# dx: " << dx << ", dt: " << dt << endl;
     dataFile << "# x \t t \t phi \n";
 
     int time_resolution = 30;        // don't need to plot every time point
 
-    for (int t = 0; t < N_t; t += time_resolution)
+    for (int t = 0; t < Nt; t += time_resolution)
     {
-        for (int x = 0; x < N_x; ++x) dataFile << x << "\t" << t << "\t" << grid(x, t) << endl;
+        for (int x = 0; x < Nx; ++x) dataFile << x << "\t" << t << "\t" << grid(x, t) << endl;
 
         dataFile << endl;
     }
