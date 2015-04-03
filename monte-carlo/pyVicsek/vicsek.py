@@ -36,8 +36,9 @@ class VicsekModel(object):
         # generate random directions on [-pi, pi]
         self.angles = (np.random.rand(self.N) * 2 - 1) * np.pi
         # and use this to find velocity components in x/y directions
-        self.velocities[:, 0] = np.sin(self.angles) * self.v
-        self.velocities[:, 1] = np.cos(self.angles) * self.v
+        self.velocities[:, 0] = np.cos(self.angles) * self.v  
+        self.velocities[:, 1] = np.sin(self.angles) * self.v
+        # the components of velocity in x and y direction are v*cos(theta) and v*sin(theta), respectively.
 
     # this is where the main experiment is carried out
     def main(self, visual_mode):
@@ -109,8 +110,9 @@ class VicsekModel(object):
 
         # using these new directions, we can find the velocity
         # vectors such that all have magnitude v
-        self.velocities[:, 0] = np.sin(self.angles) * self.v
-        self.velocities[:, 1] = np.cos(self.angles) * self.v
+        self.velocities[:, 0] = np.cos(self.angles) * self.v
+        self.velocities[:, 1] = np.sin(self.angles) * self.v
+        # the components of velocity in x and y direction are v*cos(theta) and v*sin(theta), respectively.
 
         # finally we can use these to Euler-update the positions
         self.positions = self.positions + self.velocities * self.dt
